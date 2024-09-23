@@ -1,11 +1,4 @@
-import { useMemo } from "react";
-
-const Header = ({cart, removeItem, increaseQuantity, decreaseQuantity, clearCart}) => {
-
-    // Is the cart empty?
-    const isEmpty = useMemo(() => cart.length === 0, [cart]); //renderize again when [deps] changes
-    // Total Calculate
-    const cartTotal = useMemo(() => cart.reduce((total, item) => total + (item.quantity * item.price), 0), [cart]);
+const Header = ({ cart, removeItem, increaseQuantity, decreaseQuantity, clearCart, isEmpty, cartTotal }) => {
 
     return (
         <header className="py-5 header">
@@ -17,7 +10,7 @@ const Header = ({cart, removeItem, increaseQuantity, decreaseQuantity, clearCart
                         </a>
                     </div>
                     <nav className="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
-                        <div 
+                        <div
                             className="carrito"
                         >
                             <img className="img-fluid" src="/img/carrito.png" alt="imagen carrito" />
@@ -39,14 +32,14 @@ const Header = ({cart, removeItem, increaseQuantity, decreaseQuantity, clearCart
                                             </thead>
                                             <tbody>
                                                 {cart.map(guitar => {
-                                                    return(
+                                                    return (
                                                         <tr key={guitar.id}>
                                                             <td>
                                                                 <img className="img-fluid" src={`/img/guitarra_0${guitar.id}.jpg`} alt="imagen guitarra" />
                                                             </td>
                                                             <td>{guitar.name}</td>
                                                             <td className="fw-bold">
-                                                                    ${guitar.price}
+                                                                ${guitar.price}
                                                             </td>
                                                             <td className="flex align-items-start gap-4">
                                                                 <button
@@ -56,7 +49,7 @@ const Header = ({cart, removeItem, increaseQuantity, decreaseQuantity, clearCart
                                                                 >
                                                                     -
                                                                 </button>
-                                                                    {guitar.quantity}
+                                                                {guitar.quantity}
                                                                 <button
                                                                     type="button"
                                                                     className="btn btn-dark"
@@ -81,7 +74,7 @@ const Header = ({cart, removeItem, increaseQuantity, decreaseQuantity, clearCart
                                         </table>
 
                                         <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
-                                        <button 
+                                        <button
                                             className="btn btn-dark w-100 mt-3 p-2"
                                             onClick={clearCart}
                                         >Vaciar Carrito</button>
